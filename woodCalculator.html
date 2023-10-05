@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Wood Calculator</title>
+	<style>
+		*{
+			margin: 0;
+			padding:0;
+			box-sizing: border-box;
+		}
+		.container{
+			width: 100%;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+		.item{
+			width:60vw;
+			background: #85929e;
+			border-radius: 10px;
+			box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+			padding: 2rem;
+		}
+		.inputBox{
+			display:flex;
+			justify-content:space-around;
+		}
+		.input{
+			width:30%;
+		}
+		input{
+			width:100%;
+			height:2rem;
+			border-radius:5px;
+			outline: none;
+			border:none;
+			padding:3px 10px;
+			font-size: 1rem;
+		}
+		label{
+			font-size:1rem;
+			color: whitesmoke;
+			font-weight: 600;
+			letter-spacing: 2px;
+		}
+		.btn{
+			text-align: center;
+			padding:2rem 0;
+		}
+		input[type='submit']{
+			width: 10rem;
+			height:3rem;
+			cursor: pointer;
+		}
+		.result{
+			width:100%;
+			border-radius:10px;
+			padding:1rem;
+			background: whitesmoke;
+			display:flex;
+			justify-content:space-around;
+		}
+		.result h1{
+			text-decoration: underline;
+		}
+		#table_error,#chair_error,#bed_error{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Wood Calculator</h1>
+		<div class="item">
+			<div class="inputBox">
+				<div class="input">
+					<label for="table">Table :</label>
+					<input type="text" id="table" placeholder="Table Quantity">
+				</div>
+				<div class="input">
+					<label for="chair">Chair :</label>
+					<input type="text" id="chair" placeholder="Chair Quantity">
+				</div>
+				<div class="input">
+					<label for="bed">Bed :</label>
+					<input type="text" id="bed" placeholder="Bed Quantity">
+				</div>
+			</div>
+			<div class="btn">
+				<input type="submit" value="Submit" id="submit">
+			</div>
+			<div class="result">
+				<div class="table ">
+					<h1>Table</h1>
+					<p id="table_result"></p>
+					<p id="table_error" class="error"></p>
+				</div>
+				<div class="chair ">
+					<h1>Chair</h1>
+					<p id="chair_result"></p>
+					<p id="chair_error" class="error"></p>
+				</div>
+				<div class="bed ">
+					<h1>Bed</h1>
+					<p id="bed_result"></p>
+					<p id="bed_error" class="error"></p>
+				</div>
+				<div class="total">
+					<h1>Total</h1>
+					<p id="total"></p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<script>
+		
+		//problem solving tow wood calculator
+
+		document.getElementById('submit').addEventListener('click',woodCalculator);
+		function woodCalculator(){
+
+			let chair = parseInt(document.getElementById('chair').value);
+			let table = parseInt(document.getElementById('table').value);
+			let bed = parseInt(document.getElementById('bed').value);
+			if (isNaN(chair)) {
+				document.getElementById('chair_error').innerHTML = "Note : Chair input is invalid !";
+				setTimeout(()=>{
+					document.getElementById('chair_error').innerHTML = '';
+				},2000);
+				chair = 0;
+			}
+			if (isNaN(table)) {
+				document.getElementById('table_error').innerHTML = "Note : Table input is invalid !";
+				setTimeout(()=>{
+					document.getElementById('table_error').innerHTML = '';
+				},2000);
+				table = 0;
+			}
+			if (isNaN(bed)) {
+				document.getElementById('bed_error').innerHTML = "Note : Bed input is invalid !"
+				setTimeout(()=>{
+					document.getElementById('bed_error').innerHTML = '';
+				},2000);
+				bed = 0;
+			}
+			document.getElementById('table_result').innerHTML = Math.round((table * 3))+` cubic feet`;
+			document.getElementById('chair_result').innerHTML = Math.round(chair * 1)+` cubic feet`;
+			document.getElementById('bed_result').innerHTML = Math.round(bed * 5)+` cubic feet`;
+			document.getElementById('total').innerHTML = Math.round((chair * 1) + (table * 3) + (bed * 5))+` cubic feet`;
+			setTimeout(()=>{
+				document.getElementById('chair').value = '';
+				document.getElementById('table').value = '';
+				document.getElementById('bed').value = '';
+			},2000);
+			
+			
+		}
+		// let result = woodCalculator(chair,table,bat);
+		// console.log(result)
+
+
+		//third problem solution bricks calculator
+
+		// let building = '25';
+
+		// function brickCalculator(building){
+		// 	if (isNaN(parseFloat(building)) || building <= 0) {
+		// 		return "Please Enter a valid building floor"
+		// 	}
+		// 	if (building < 11 && 0 < building) {
+		// 		return (building * 15) * 1000 ;
+		// 	}
+		// 	if (building < 21 && 10 < building) {
+		// 		return (building * 12) * 1000;
+		// 	}
+		// 	if (building > 20) {
+		// 		return (building * 10)*1000 ;
+		// 	}
+		// }
+		// console.log(brickCalculator(building));
+
+		//problem solving 3 finding smallest element from array
+
+		// let arr = ['cc','kd','d','Pawon','Khawooon','down','bowon','soo','aa'];
+		// let smallest = (a,b)=> a.length <= b.length ? a:b;
+		// console.log(arr.reduce(smallest))
+
+	</script>
+</body>
+</html>
